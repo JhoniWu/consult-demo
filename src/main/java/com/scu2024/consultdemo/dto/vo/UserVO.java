@@ -1,4 +1,4 @@
-package com.scu2024.consultdemo.vo;
+package com.scu2024.consultdemo.dto.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

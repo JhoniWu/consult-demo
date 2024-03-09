@@ -1,18 +1,14 @@
 package com.scu2024.consultdemo.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.scu2024.consultdemo.common.CommonResult;
 import com.scu2024.consultdemo.common.UserUtils;
-import com.scu2024.consultdemo.dao.po.Consult;
 import com.scu2024.consultdemo.dao.po.User;
+import com.scu2024.consultdemo.dto.PageDTO;
 import com.scu2024.consultdemo.service.UserService;
-import com.scu2024.consultdemo.vo.UserReqVO;
-import com.scu2024.consultdemo.vo.UserVO;
+import com.scu2024.consultdemo.dto.vo.UserReqVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -41,9 +37,9 @@ public class UserController {
 		return CommonResult.success(userService.add(user));
 	}
 
-	@PostMapping("/listpage")
-	public CommonResult listPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNum") Integer pageNum, @RequestBody User user){
-		return CommonResult.success(userService.queryByPage(pageSize, pageNum, user));
+	@GetMapping("/listpage")
+	public CommonResult listPage(PageDTO pageDTO, User user){
+		return CommonResult.success(userService.queryByPage(pageDTO.getPageSize(), pageDTO.getPageNum(), user));
 	}
 
 	@PostMapping("/login")

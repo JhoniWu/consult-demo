@@ -2,9 +2,7 @@ package com.scu2024.consultdemo.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.scu2024.consultdemo.dao.po.User;
-import com.scu2024.consultdemo.dao.po.Visit;
-import com.scu2024.consultdemo.vo.UserVO;
-import org.springframework.stereotype.Service;
+import com.scu2024.consultdemo.dto.vo.UserVO;
 
 import java.util.List;
 

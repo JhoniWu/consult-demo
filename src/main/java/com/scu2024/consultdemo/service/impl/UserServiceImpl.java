@@ -7,7 +7,7 @@ import com.scu2024.consultdemo.common.ConvertBeanUtils;
 import com.scu2024.consultdemo.dao.mapper.UserMapper;
 import com.scu2024.consultdemo.dao.po.User;
 import com.scu2024.consultdemo.service.UserService;
-import com.scu2024.consultdemo.vo.UserVO;
+import com.scu2024.consultdemo.dto.vo.UserVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
