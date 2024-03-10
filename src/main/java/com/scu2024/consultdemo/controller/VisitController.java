@@ -4,9 +4,12 @@ import com.scu2024.consultdemo.common.CommonResult;
 import com.scu2024.consultdemo.dao.po.Consult;
 import com.scu2024.consultdemo.dao.po.User;
 import com.scu2024.consultdemo.dao.po.Visit;
+import com.scu2024.consultdemo.dto.DeleteDTO;
 import com.scu2024.consultdemo.service.VisitService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @program: consult-demo
@@ -24,9 +27,9 @@ public class VisitController {
 		return CommonResult.success(visitService.listAll());
 	}
 
-	@PostMapping("/delete/{id}")
-	public CommonResult deleteById(@PathVariable("id") Long id){
-		return CommonResult.success(visitService.deleteById(id));
+	@PostMapping("/delete")
+	public CommonResult deleteById(@RequestBody DeleteDTO ids){
+		return CommonResult.success(visitService.deleteByIds(ids.getIds()));
 	}
 
 	@PostMapping("/add")

@@ -16,4 +16,6 @@ public interface VisitAdvanceService {
 	boolean add(VisitAdvance visitAdvance);
 
 	IPage<VisitAdvance> queryByPage(int pageSize, int pageNum, VisitAdvance visitAdvance);
+
+	boolean deleteByIds(List<Long> ids);
 }

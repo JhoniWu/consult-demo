@@ -4,9 +4,15 @@ import com.scu2024.consultdemo.common.CommonResult;
 import com.scu2024.consultdemo.dao.po.Consult;
 import com.scu2024.consultdemo.dao.po.User;
 import com.scu2024.consultdemo.dao.po.VisitAdvance;
+import com.scu2024.consultdemo.dto.DeleteDTO;
+import com.scu2024.consultdemo.dto.PageDTO;
 import com.scu2024.consultdemo.service.VisitAdvanceService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @program: consult-demo
@@ -24,18 +30,22 @@ public class VisitAdvanceController {
 		return CommonResult.success(visitAdvanceService.listAll());
 	}
 
-	@PostMapping("/delete/{id}")
-	public CommonResult deleteById(@PathVariable("id") Long id){
-		return CommonResult.success(visitAdvanceService.deleteById(id));
-	}
 
 	@PostMapping("/add")
 	public CommonResult addOne(@RequestBody VisitAdvance visitAdvance){
 		return CommonResult.success(visitAdvanceService.add(visitAdvance));
 	}
 
-	@PostMapping("/listpage")
-	public CommonResult listPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNum") Integer pageNum, @RequestBody VisitAdvance visitAdvance){
-		return CommonResult.success(visitAdvanceService.queryByPage(pageSize, pageNum, visitAdvance));
+	@GetMapping("/listpage")
+	public CommonResult listPage(PageDTO pageDTO, VisitAdvance visitAdvance){
+		return CommonResult.success(visitAdvanceService.queryByPage(pageDTO.getPageSize(), pageDTO.getPageNum(), visitAdvance));
+	}
+
+	@PostMapping("/delete")
+	public CommonResult delete(@RequestBody DeleteDTO ids){
+		System.out.println(ids);
+		boolean isd = visitAdvanceService.deleteByIds(ids.getIds());
+		if(isd) return CommonResult.success("删除成功");
+		return CommonResult.bizError("删除错误");
 	}
 }

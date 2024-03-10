@@ -3,9 +3,11 @@ package com.scu2024.consultdemo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.scu2024.consultdemo.dao.mapper.ConsultAdvanceMapper;
 import com.scu2024.consultdemo.dao.mapper.ConsultMapper;
 import com.scu2024.consultdemo.dao.po.ConsultAdvance;
+import com.scu2024.consultdemo.dto.ConsultResultDTO;
 import com.scu2024.consultdemo.service.ConsultAdvanceService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -36,5 +38,12 @@ public class ConsultAdvanceServiceImpl implements ConsultAdvanceService {
 	public IPage<ConsultAdvance> queryByPage(int pageSize, int pageNum, ConsultAdvance consultAdvance) {
 		QueryWrapper<ConsultAdvance> qw = new QueryWrapper<>();
 		return consultAdvanceMapper.selectPage(new Page<>(pageSize, pageNum), qw);
+	}
+
+	@Override
+	public IPage<ConsultResultDTO> queryCaRecords(int pageSize, int pageNum, Long studentId) {
+		Page<ConsultResultDTO> page = new PageDTO<>(pageSize, pageNum);
+		IPage<ConsultResultDTO> consultResultDTOIPage = consultAdvanceMapper.selectResult(new Page<>(pageNum, pageSize), studentId);
+		return consultResultDTOIPage;
 	}
 }

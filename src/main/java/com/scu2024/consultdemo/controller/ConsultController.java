@@ -4,9 +4,11 @@ import com.scu2024.consultdemo.common.CommonResult;
 import com.scu2024.consultdemo.dao.po.Consult;
 import com.scu2024.consultdemo.dao.po.ConsultAdvance;
 import com.scu2024.consultdemo.dao.po.User;
+import com.scu2024.consultdemo.dto.DeleteDTO;
 import com.scu2024.consultdemo.service.ConsultService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+import org.yaml.snakeyaml.events.Event;
 
 /**
  * @program: consult-demo
@@ -24,18 +26,19 @@ public class ConsultController {
 		return CommonResult.success(consultService.listAll());
 	}
 
-	@PostMapping("/delete/{id}")
-	public CommonResult deleteById(@PathVariable("id") Long id){
-		return CommonResult.success(consultService.deleteById(id));
-	}
-
-	@PostMapping("/add")
-	public CommonResult addOne(@RequestBody Consult consult){
-		return CommonResult.success(consultService.add(consult));
+	@PostMapping("/delete")
+	public CommonResult deleteById(@RequestBody DeleteDTO deleteDTO){
+		return CommonResult.success(consultService.deleteByIds(deleteDTO.getIds()));
 	}
 
 	@PostMapping("/listpage")
 	public CommonResult listPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNum") Integer pageNum, @RequestBody Consult consult){
 		return CommonResult.success(consultService.queryByPage(pageSize, pageNum, consult));
 	}
+
+	@PostMapping("/arrange")
+	public CommonResult arrange(@RequestBody Consult consult){
+		return CommonResult.success(consultService.arrangeStudent(consult));
+	}
+
 }

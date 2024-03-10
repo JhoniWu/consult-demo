@@ -19,7 +19,9 @@ public class VisitAdvanceServiceImpl implements VisitAdvanceService {
 	private VisitAdvanceMapper visitAdvanceMapper;
 	@Override
 	public List<VisitAdvance> listAll() {
-		return visitAdvanceMapper.selectList(null);
+		List<VisitAdvance> visitAdvances = visitAdvanceMapper.selectList(null);
+		System.out.println(visitAdvances.get(0).toString());
+		return visitAdvances;
 	}
 
 	@Override
@@ -35,7 +37,25 @@ public class VisitAdvanceServiceImpl implements VisitAdvanceService {
 	@Override
 	public IPage<VisitAdvance> queryByPage(int pageSize, int pageNum, VisitAdvance visitAdvance) {
 		QueryWrapper<VisitAdvance> qw = new QueryWrapper<>();
-		return visitAdvanceMapper.selectPage(new Page<>(pageSize, pageNum), qw);
+		if(visitAdvance.getStudentId()!=null){
+			qw.eq("student_id", visitAdvance.getStudentId());
+		}
+		if(visitAdvance.getArrangeState()!=null){
+			qw.eq("arrange_state", visitAdvance.getArrangeState());
+		}
+		return visitAdvanceMapper.selectPage(new Page<>(pageNum, pageSize), qw);
+	}
+
+	@Override
+	public boolean deleteByIds(List<Long> ids) {
+		System.out.println(ids.toString());
+		if(ids.isEmpty()) {
+			return false;
+		}
+		QueryWrapper<VisitAdvance> qw = new QueryWrapper<>();
+		qw.in("student_id" , ids);
+		visitAdvanceMapper.delete(qw);
+		return true;
 	}
 
 }

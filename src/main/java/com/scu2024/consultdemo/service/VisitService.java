@@ -12,4 +12,7 @@ public interface VisitService {
 	boolean add(Visit visit);
 
 	IPage<Visit> queryByPage(int pageSize, int pageNum, Visit visit);
+
+
+	boolean deleteByIds(List<Long> ids);
 }

@@ -1,5 +1,6 @@
 package com.scu2024.consultdemo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.Query;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -10,6 +11,7 @@ import com.scu2024.consultdemo.service.VisitService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.awt.desktop.QuitEvent;
 import java.util.List;
 
 
@@ -38,6 +40,18 @@ public class VisitServiceImpl implements VisitService {
 		QueryWrapper<Visit> qw = new QueryWrapper<>();
 		qw.eq(visit.getId()!=null, "id", visit.getId());
 		return visitMapper.selectPage(new Page<>(pageSize, pageNum), qw);
+	}
+
+	@Override
+	public boolean deleteByIds(List<Long> ids) {
+		if(ids.isEmpty()){
+			return false;
+		} else{
+			QueryWrapper<Visit> qw = new QueryWrapper<>();
+			qw.in("student_id", ids);
+			visitMapper.delete(qw);
+			return true;
+		}
 	}
 
 

@@ -7,8 +7,8 @@ package com.scu2024.consultdemo.dto;
  * @create: 2024-03-08 17:09
  **/
 public class PageDTO {
-	Integer pageNum = 1;
-	Integer pageSize = 10;
+	static Integer pageNum = 1;
+	static Integer pageSize = 10;
 
 	@Override
 	public String toString() {

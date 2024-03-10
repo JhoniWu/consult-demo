@@ -1,7 +1,10 @@
 package com.scu2024.consultdemo.dao.po;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.awt.*;
 import java.util.Date;
 
 /**
@@ -16,15 +19,24 @@ public class VisitAdvance {
 	private Long id;
 	private Long studentId;
 	private Integer paperGrade;
-	private Date WillingDay1;
-	private Date WillingDay2;
-	private Date WillingDay3;
-	private Integer WillingTime1;
-	private Integer WillingTime2;
-	private Integer WillingTime3;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date willingDay1;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date willingDay2;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date willingDay3;
+
+	private Integer willingTime1;
+	private Integer willingTime2;
+	private Integer willingTime3;
 	private Integer arrangeState;
+
 	@TableField(value = "create_time", fill = FieldFill.INSERT)
 	private Date createTime;
+
 	@TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
 	private Date updateTime;
 
@@ -34,12 +46,9 @@ public class VisitAdvance {
 			"id=" + id +
 			", studentId=" + studentId +
 			", paperGrade=" + paperGrade +
-			", WillingDay1=" + WillingDay1 +
-			", WillingDay2=" + WillingDay2 +
-			", WillingDay3=" + WillingDay3 +
-			", WillingTime1=" + WillingTime1 +
-			", WillingTime2=" + WillingTime2 +
-			", WillingTime3=" + WillingTime3 +
+			", WillingTime1=" + willingTime1 +
+			", WillingTime2=" + willingTime2 +
+			", WillingTime3=" + willingTime3 +
 			", arrangeState=" + arrangeState +
 			", createTime=" + createTime +
 			", updateTime=" + updateTime +
@@ -71,51 +80,51 @@ public class VisitAdvance {
 	}
 
 	public Date getWillingDay1() {
-		return WillingDay1;
+		return willingDay1;
 	}
 
 	public void setWillingDay1(Date willingDay1) {
-		WillingDay1 = willingDay1;
+		this.willingDay1 = willingDay1;
 	}
 
 	public Date getWillingDay2() {
-		return WillingDay2;
+		return willingDay2;
 	}
 
 	public void setWillingDay2(Date willingDay2) {
-		WillingDay2 = willingDay2;
+		this.willingDay2 = willingDay2;
 	}
 
 	public Date getWillingDay3() {
-		return WillingDay3;
+		return willingDay3;
 	}
 
 	public void setWillingDay3(Date willingDay3) {
-		WillingDay3 = willingDay3;
+		this.willingDay3 = willingDay3;
 	}
 
 	public Integer getWillingTime1() {
-		return WillingTime1;
+		return willingTime1;
 	}
 
 	public void setWillingTime1(Integer willingTime1) {
-		WillingTime1 = willingTime1;
+		this.willingTime1 = willingTime1;
 	}
 
 	public Integer getWillingTime2() {
-		return WillingTime2;
+		return willingTime2;
 	}
 
 	public void setWillingTime2(Integer willingTime2) {
-		WillingTime2 = willingTime2;
+		this.willingTime2 = willingTime2;
 	}
 
 	public Integer getWillingTime3() {
-		return WillingTime3;
+		return willingTime3;
 	}
 
 	public void setWillingTime3(Integer willingTime3) {
-		WillingTime3 = willingTime3;
+		this.willingTime3 = willingTime3;
 	}
 
 	public Integer getArrangeState() {
