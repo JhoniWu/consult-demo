@@ -74,5 +74,11 @@ public class UserServiceImpl implements UserService {
 		return user.getName();
 	}
 
+	@Override
+	public Integer queryRole(Long id) {
+		User user = userMapper.selectById(id);
+		return user.getRole();
+	}
+
 
 }

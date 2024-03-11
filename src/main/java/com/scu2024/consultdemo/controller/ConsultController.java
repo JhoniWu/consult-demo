@@ -31,8 +31,8 @@ public class ConsultController {
 		return CommonResult.success(consultService.deleteByIds(deleteDTO.getIds()));
 	}
 
-	@PostMapping("/listpage")
-	public CommonResult listPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNum") Integer pageNum, @RequestBody Consult consult){
+	@GetMapping("/listpage")
+	public CommonResult listPage(Integer pageSize, Integer pageNum, Consult consult){
 		return CommonResult.success(consultService.queryByPage(pageSize, pageNum, consult));
 	}
 

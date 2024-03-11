@@ -69,7 +69,7 @@ public class ConsultServiceImpl implements ConsultService {
 			qw.like("student_name", consult.getStudentName());
 		}
 
-		return consultMapper.selectPage(new Page<>(pageSize, pageNum), qw);
+		return consultMapper.selectPage(new Page<>(pageNum, pageSize), qw);
 	}
 
 	@Override

@@ -21,4 +21,7 @@ public interface UserService {
 	boolean register(String account, String password);
 
 	String selectName(Long id);
+
+	Integer queryRole(Long id);
+
 }

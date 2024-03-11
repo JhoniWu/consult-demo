@@ -24,13 +24,28 @@ public class DutyTimeController {
 		return CommonResult.success(dutyTimeService.listAll());
 	}
 
-	@PostMapping("delete/{id}")
-	public CommonResult deleteById(@PathVariable("id") Long id){
-		return CommonResult.success(dutyTimeService.deleteById(id));
+	@PostMapping("delete")
+	public CommonResult deleteById(@RequestBody DutyTime dutyTime){
+		boolean b = dutyTimeService.deleteById(dutyTime);
+		if(b){
+			return CommonResult.success("删除成功");
+		}else {
+			return CommonResult.bizError("删除失败");
+		}
 	}
 
 	@PostMapping("/add")
 	public CommonResult addOne(@RequestBody DutyTime dutyTime){
-		return CommonResult.success(dutyTimeService.add(dutyTime));
+		boolean add = dutyTimeService.add(dutyTime);
+		if(add){
+			return CommonResult.success("添加成功");
+		} else {
+			return CommonResult.bizError("删除失败");
+		}
+	}
+
+	@GetMapping("/query")
+	public CommonResult query(@RequestParam(value = "role", defaultValue = "3") Integer role){
+		return CommonResult.success(dutyTimeService.query(role));
 	}
 }

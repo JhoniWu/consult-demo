@@ -1,10 +1,10 @@
 package com.scu2024.consultdemo.dao.po;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ import java.util.Date;
 @TableName("consult")
 @Data
 public class Consult {
-	@TableId("consult")
+	@TableId(type = IdType.AUTO)
 	private Long id;
 	private Long studentId;
 	private Long consultorId;
@@ -25,8 +25,10 @@ public class Consult {
 	private String consultorName;
 	private Integer consultTime;
 	private String studentName;
+	@JsonIgnore
 	@TableField(value = "create_time", fill = FieldFill.INSERT)
 	private Date createTime;
+	@JsonIgnore
 	@TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
 	private Date updateTime;
 	private Integer consultStatus;
