@@ -5,6 +5,7 @@ import com.scu2024.consultdemo.dao.po.Consult;
 import com.scu2024.consultdemo.dao.po.User;
 import com.scu2024.consultdemo.dao.po.Visit;
 import com.scu2024.consultdemo.dto.DeleteDTO;
+import com.scu2024.consultdemo.dto.PageDTO;
 import com.scu2024.consultdemo.service.VisitService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +38,8 @@ public class VisitController {
 		return CommonResult.success(visitService.add(visit));
 	}
 
-	@PostMapping("/listpage")
-	public CommonResult listPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNum") Integer pageNum, @RequestBody Visit visit){
-		return CommonResult.success(visitService.queryByPage(pageSize, pageNum, visit));
+	@GetMapping("/listpage")
+	public CommonResult listPage(PageDTO pageDTO, Visit visit){
+		return CommonResult.success(visitService.queryByPage(pageDTO.getPageSize(), pageDTO.getPageNum(), visit));
 	}
 }

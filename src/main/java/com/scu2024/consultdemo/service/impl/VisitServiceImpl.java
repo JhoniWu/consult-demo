@@ -39,7 +39,7 @@ public class VisitServiceImpl implements VisitService {
 	public IPage<Visit> queryByPage(int pageSize, int pageNum, Visit visit) {
 		QueryWrapper<Visit> qw = new QueryWrapper<>();
 		qw.eq(visit.getId()!=null, "id", visit.getId());
-		return visitMapper.selectPage(new Page<>(pageSize, pageNum), qw);
+		return visitMapper.selectPage(new Page<>(pageNum, pageSize), qw);
 	}
 
 	@Override
