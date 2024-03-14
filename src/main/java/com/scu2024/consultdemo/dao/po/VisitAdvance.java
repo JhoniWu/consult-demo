@@ -20,13 +20,13 @@ public class VisitAdvance {
 	private Long studentId;
 	private Integer paperGrade;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	private Date willingDay1;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	private Date willingDay2;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	private Date willingDay3;
 
 	private Integer willingTime1;

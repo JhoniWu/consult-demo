@@ -59,7 +59,7 @@ public class VisitAdvanceServiceImpl implements VisitAdvanceService {
 			return false;
 		}
 		QueryWrapper<VisitAdvance> qw = new QueryWrapper<>();
-		qw.in("student_id" , ids);
+		qw.in("id" , ids);
 		visitAdvanceMapper.delete(qw);
 		return true;
 	}

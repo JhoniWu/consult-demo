@@ -44,7 +44,10 @@ public class VisitServiceImpl implements VisitService {
 	@Override
 	public IPage<Visit> queryByPage(int pageSize, int pageNum, Visit visit) {
 		QueryWrapper<Visit> qw = new QueryWrapper<>();
-		qw.eq(visit.getId()!=null, "id", visit.getId());
+		qw.eq(visit.getStudentId()!=null, "student_id", visit.getStudentId());
+		qw.eq(visit.getVisitTime()!=null, "visit_time", visit.getVisitTime());
+		qw.eq(visit.getVisitDay()!=null, "visit_day", visit.getVisitDay());
+		qw.eq(visit.getState()!=null, "state", visit.getState());
 		return visitMapper.selectPage(new Page<>(pageNum, pageSize), qw);
 	}
 
