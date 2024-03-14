@@ -6,6 +6,7 @@ import com.scu2024.consultdemo.dao.po.User;
 import com.scu2024.consultdemo.dao.po.VisitAdvance;
 import com.scu2024.consultdemo.dto.DeleteDTO;
 import com.scu2024.consultdemo.dto.PageDTO;
+import com.scu2024.consultdemo.dto.vo.VisitAdReqVO;
 import com.scu2024.consultdemo.service.VisitAdvanceService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -47,5 +48,19 @@ public class VisitAdvanceController {
 		boolean isd = visitAdvanceService.deleteByIds(ids.getIds());
 		if(isd) return CommonResult.success("删除成功");
 		return CommonResult.bizError("删除错误");
+	}
+
+	@PostMapping("/setdate")
+	public CommonResult setDate(@RequestBody VisitAdvance advance){
+		boolean ist = visitAdvanceService.setDate(advance);
+		if(ist) return CommonResult.success("预约成功");
+		return CommonResult.bizError("发生错误");
+	}
+
+	@GetMapping("/setstate")
+	public CommonResult setState(@RequestParam("id") Long id, @RequestParam("arrangeState") Integer arrangeState){
+		boolean ist = visitAdvanceService.setArrangeState(id, arrangeState);
+		if(ist) return CommonResult.success();
+		return CommonResult.bizError("修改失败，无记录");
 	}
 }

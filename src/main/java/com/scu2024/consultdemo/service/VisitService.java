@@ -13,6 +13,9 @@ public interface VisitService {
 
 	IPage<Visit> queryByPage(int pageSize, int pageNum, Visit visit);
 
-
 	boolean deleteByIds(List<Long> ids);
+
+	boolean isExist(Long studentId);
+
+	boolean updateV1(Visit visit);
 }

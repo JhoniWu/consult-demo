@@ -19,4 +19,7 @@ public interface ConsultAdvanceService {
 	IPage<ConsultAdvance> queryByPage(int pageSize, int pageNum, ConsultAdvance consultAdvance);
 
 	IPage<ConsultResultDTO> queryCaRecords(int pageSize, int pageNum, Long studentId);
+
+	boolean deleteByIds(List<Long> ids);
+
 }

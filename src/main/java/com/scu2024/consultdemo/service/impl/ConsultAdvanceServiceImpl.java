@@ -46,4 +46,11 @@ public class ConsultAdvanceServiceImpl implements ConsultAdvanceService {
 		IPage<ConsultResultDTO> consultResultDTOIPage = consultAdvanceMapper.selectResult(new Page<>(pageNum, pageSize), studentId);
 		return consultResultDTOIPage;
 	}
+
+	@Override
+	public boolean deleteByIds(List<Long> ids) {
+		QueryWrapper<ConsultAdvance> qw = new QueryWrapper<>();
+		qw.in("id", ids);
+		return consultAdvanceMapper.delete(qw)  > 0;
+	}
 }

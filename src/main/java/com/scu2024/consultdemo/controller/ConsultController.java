@@ -41,4 +41,14 @@ public class ConsultController {
 		return CommonResult.success(consultService.arrangeStudent(consult));
 	}
 
+	@PostMapping("/add")
+	public CommonResult add(@RequestBody Consult consult){
+		return CommonResult.success(consultService.add(consult));
+	}
+
+	@PostMapping("/update")
+	public CommonResult update(@RequestBody Consult consult){
+		return CommonResult.success(consultService.updateV1(consult));
+	}
+
 }

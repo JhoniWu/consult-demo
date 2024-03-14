@@ -1,6 +1,7 @@
 package com.scu2024.consultdemo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.scu2024.consultdemo.common.ConvertBeanUtils;
@@ -10,6 +11,7 @@ import com.scu2024.consultdemo.dao.po.ConsultAdvance;
 import com.scu2024.consultdemo.service.ConsultService;
 import com.scu2024.consultdemo.service.UserService;
 import jakarta.annotation.Resource;
+import org.apache.catalina.ContainerListener;
 import org.apache.catalina.util.ErrorPageSupport;
 import org.springframework.boot.web.embedded.undertow.ConfigurableUndertowWebServerFactory;
 import org.springframework.stereotype.Service;
@@ -86,5 +88,12 @@ public class ConsultServiceImpl implements ConsultService {
 		consult.setStudentName(userService.selectName(consult.getStudentId()));
 		consult.setConsultorName(userService.selectName(consult.getConsultorId()));
 		return consultMapper.insert(consult) > 0;
+	}
+
+	@Override
+	public boolean updateV1(Consult consult) {
+		UpdateWrapper<Consult> uw = new UpdateWrapper<>();
+		uw.eq("id", consult.getId());
+		return consultMapper.update(consult, uw) > 0;
 	}
 }

@@ -8,6 +8,7 @@ import com.scu2024.consultdemo.dto.DeleteDTO;
 import com.scu2024.consultdemo.dto.PageDTO;
 import com.scu2024.consultdemo.service.VisitService;
 import jakarta.annotation.Resource;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,5 +42,19 @@ public class VisitController {
 	@GetMapping("/listpage")
 	public CommonResult listPage(PageDTO pageDTO, Visit visit){
 		return CommonResult.success(visitService.queryByPage(pageDTO.getPageSize(), pageDTO.getPageNum(), visit));
+	}
+
+	@GetMapping("/exist")
+	public CommonResult isExist(@RequestParam Long studentId){
+		return CommonResult.success( visitService.isExist(studentId));
+	}
+
+	@PostMapping("/update")
+	public CommonResult updateV1(@RequestBody Visit visit){
+		if(visitService.updateV1(visit)){
+			return CommonResult.success();
+		}else{
+			return CommonResult.bizError("error");
+		}
 	}
 }

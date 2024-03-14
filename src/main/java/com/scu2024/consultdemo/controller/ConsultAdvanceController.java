@@ -6,6 +6,7 @@ import com.scu2024.consultdemo.common.CommonResult;
 import com.scu2024.consultdemo.dao.po.ConsultAdvance;
 import com.scu2024.consultdemo.dao.po.User;
 import com.scu2024.consultdemo.dto.ConsultResultDTO;
+import com.scu2024.consultdemo.dto.DeleteDTO;
 import com.scu2024.consultdemo.dto.PageDTO;
 import com.scu2024.consultdemo.service.ConsultAdvanceService;
 import jakarta.annotation.Resource;
@@ -29,9 +30,9 @@ public class ConsultAdvanceController {
 		return CommonResult.success(consultAdvanceService.listAll());
 	}
 
-	@PostMapping ("/delete/{id}")
-	public CommonResult deleteById(@PathVariable("id") Long id){
-		return CommonResult.success(consultAdvanceService.deleteById(id));
+	@PostMapping("/delete")
+	public CommonResult deleteByIds(@RequestBody DeleteDTO deleteDTO){
+		return CommonResult.success(consultAdvanceService.deleteByIds(deleteDTO.getIds()));
 	}
 
 	@PostMapping("/add")

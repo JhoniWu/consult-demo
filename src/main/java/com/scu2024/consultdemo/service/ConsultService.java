@@ -21,4 +21,6 @@ public interface ConsultService {
 	boolean deleteByIds(List<Long> ids);
 
 	boolean arrangeStudent(Consult consult);
+
+	boolean updateV1(Consult consult);
 }

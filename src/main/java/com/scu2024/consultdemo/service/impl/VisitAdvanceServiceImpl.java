@@ -1,15 +1,20 @@
 package com.scu2024.consultdemo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.scu2024.consultdemo.common.ConvertBeanUtils;
 import com.scu2024.consultdemo.dao.mapper.VisitAdvanceMapper;
 import com.scu2024.consultdemo.dao.po.VisitAdvance;
+import com.scu2024.consultdemo.dto.vo.VisitAdReqVO;
 import com.scu2024.consultdemo.service.VisitAdvanceService;
 import jakarta.annotation.Resource;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.swing.undo.StateEdit;
 import java.util.List;
 
 
@@ -31,6 +36,7 @@ public class VisitAdvanceServiceImpl implements VisitAdvanceService {
 
 	@Override
 	public boolean add(VisitAdvance visitAdvance) {
+		visitAdvance.setArrangeState(0);
 		return visitAdvanceMapper.insert(visitAdvance) > 0;
 	}
 
@@ -58,4 +64,15 @@ public class VisitAdvanceServiceImpl implements VisitAdvanceService {
 		return true;
 	}
 
+	@Override
+	public boolean setDate(VisitAdvance visitAdReqVO) {
+		return visitAdvanceMapper.insert(visitAdReqVO) > 0;
+	}
+
+	@Override
+	public boolean setArrangeState(Long id,Integer state) {
+		UpdateWrapper<VisitAdvance> uw = new UpdateWrapper<>();
+		uw.eq("id", id).set("arrange_state", state);
+		return visitAdvanceMapper.update(null, uw) > 0;
+	}
 }
