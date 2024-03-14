@@ -14,4 +14,5 @@ public class DutyTimeRespVO {
 	private Integer timeStart;
 	private Integer timeOver;
 	private String name;
+	private Long userId;
 }

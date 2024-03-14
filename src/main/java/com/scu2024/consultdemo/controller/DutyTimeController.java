@@ -40,7 +40,7 @@ public class DutyTimeController {
 		if(add){
 			return CommonResult.success("添加成功");
 		} else {
-			return CommonResult.bizError("删除失败");
+			return CommonResult.bizError("添加失败");
 		}
 	}
 
