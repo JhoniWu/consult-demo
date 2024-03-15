@@ -37,7 +37,7 @@ public class ConsultAdvanceServiceImpl implements ConsultAdvanceService {
 	@Override
 	public IPage<ConsultAdvance> queryByPage(int pageSize, int pageNum, ConsultAdvance consultAdvance) {
 		QueryWrapper<ConsultAdvance> qw = new QueryWrapper<>();
-		return consultAdvanceMapper.selectPage(new Page<>(pageSize, pageNum), qw);
+		return consultAdvanceMapper.selectPage(new Page<>(pageNum, pageSize), qw);
 	}
 
 	@Override

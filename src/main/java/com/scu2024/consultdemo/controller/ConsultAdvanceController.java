@@ -40,9 +40,9 @@ public class ConsultAdvanceController {
 		return CommonResult.success(consultAdvanceService.add(consultAdvance));
 	}
 
-	@PostMapping("/listpage")
-	public CommonResult listPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNum") Integer pageNum, @RequestBody ConsultAdvance consultAdvance){
-		return CommonResult.success(consultAdvanceService.queryByPage(pageSize, pageNum, consultAdvance));
+	@GetMapping("/listpage")
+	public CommonResult listPage(PageDTO pageDTO, ConsultAdvance consultAdvance){
+		return CommonResult.success(consultAdvanceService.queryByPage(pageDTO.getPageSize(), pageDTO.getPageNum(), consultAdvance));
 	}
 
 	@GetMapping("/query/records")
