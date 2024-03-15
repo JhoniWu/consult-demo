@@ -3,9 +3,8 @@
 <mapper namespace="com.scu2024.consultdemo.dao.mapper.ConsultAdvanceMapper">
 
     <select id="selectResult" resultType="com.scu2024.consultdemo.dto.ConsultResultDTO" parameterType="long">
-        select ca.id, u1.name as name,  va.paper_grade as grade, u2.name as consultor_name, ca.student_id, ca.consultor_id , ca.consult_time from consult_advance ca
+        select ca.id, u1.name as name,  va.paper_grade as grade, ca.student_id, ca.consult_time from consult_advance ca
             INNER JOIN user u1 on ca.student_id = u1.id
-            INNER JOIN user u2 ON ca.consultor_id = u2.id
             INNER JOIN visit_advance va on ca.student_id = va.student_id
         <where>
             <if test="student_id != null">
