@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.scu2024.consultdemo.dao.po.Consult;
 import com.scu2024.consultdemo.dao.po.ConsultAdvance;
 import com.scu2024.consultdemo.dao.po.Visit;
+import com.scu2024.consultdemo.dto.vo.ConsultAdReqVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,9 @@ public interface ConsultService {
 
 	boolean deleteByIds(List<Long> ids);
 
-	boolean arrangeStudent(Consult consult);
+	boolean arrangeStudent(Long id, Long consultorId);
 
 	boolean updateV1(Consult consult);
+
+	boolean setconsult(ConsultAdReqVO consultAdReqVO);
 }

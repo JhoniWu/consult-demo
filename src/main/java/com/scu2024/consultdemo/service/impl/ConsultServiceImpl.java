@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.scu2024.consultdemo.common.ConvertBeanUtils;
+import com.scu2024.consultdemo.dao.mapper.ConsultAdvanceMapper;
 import com.scu2024.consultdemo.dao.mapper.ConsultMapper;
 import com.scu2024.consultdemo.dao.po.Consult;
 import com.scu2024.consultdemo.dao.po.ConsultAdvance;
+import com.scu2024.consultdemo.dto.vo.ConsultAdReqVO;
 import com.scu2024.consultdemo.service.ConsultService;
 import com.scu2024.consultdemo.service.UserService;
 import jakarta.annotation.Resource;
@@ -31,6 +33,8 @@ public class ConsultServiceImpl implements ConsultService {
 	private ConsultMapper consultMapper;
 	@Resource
 	private UserService userService;
+	@Resource
+	private ConsultAdvanceMapper consultAdvanceMapper;
 	@Override
 	public List<Consult> listAll() {
 		return consultMapper.selectList(null);
@@ -84,10 +88,10 @@ public class ConsultServiceImpl implements ConsultService {
 	}
 
 	@Override
-	public boolean arrangeStudent(Consult consult) {
-		consult.setStudentName(userService.selectName(consult.getStudentId()));
-		consult.setConsultorName(userService.selectName(consult.getConsultorId()));
-		return consultMapper.insert(consult) > 0;
+	public boolean arrangeStudent(Long id, Long consultorId) {
+		UpdateWrapper<ConsultAdvance> uw = new UpdateWrapper<>();
+		uw.eq("id", id).set("consultor_id", consultorId);
+		return consultAdvanceMapper.update(null, uw) > 0;
 	}
 
 	@Override
@@ -95,5 +99,14 @@ public class ConsultServiceImpl implements ConsultService {
 		UpdateWrapper<Consult> uw = new UpdateWrapper<>();
 		uw.eq("id", consult.getId());
 		return consultMapper.update(consult, uw) > 0;
+	}
+
+	@Override
+	public boolean setconsult(ConsultAdReqVO consultAdReqVO) {
+		Consult convert = ConvertBeanUtils.convert(consultAdReqVO, Consult.class);
+		convert.setStudentName(userService.selectName(convert.getStudentId()));
+		convert.setConsultorName(userService.selectName(convert.getConsultorId()));
+		convert.setConsultStatus(0);
+		return consultMapper.insert(convert) > 0;
 	}
 }

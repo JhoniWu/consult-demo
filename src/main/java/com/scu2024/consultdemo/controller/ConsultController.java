@@ -5,6 +5,7 @@ import com.scu2024.consultdemo.dao.po.Consult;
 import com.scu2024.consultdemo.dao.po.ConsultAdvance;
 import com.scu2024.consultdemo.dao.po.User;
 import com.scu2024.consultdemo.dto.DeleteDTO;
+import com.scu2024.consultdemo.dto.vo.ConsultAdReqVO;
 import com.scu2024.consultdemo.service.ConsultService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +37,14 @@ public class ConsultController {
 		return CommonResult.success(consultService.queryByPage(pageSize, pageNum, consult));
 	}
 
-	@PostMapping("/arrange")
-	public CommonResult arrange(@RequestBody Consult consult){
-		return CommonResult.success(consultService.arrangeStudent(consult));
+	@GetMapping("/arrange")
+	public CommonResult arrange(@RequestParam("id") Long id, @RequestParam("consultorId") Long consultId){
+		return CommonResult.success(consultService.arrangeStudent(id, consultId));
+	}
+
+	@PostMapping("/setconsult")
+	public CommonResult setconsult(@RequestBody ConsultAdReqVO consultAdReqVO){
+			return CommonResult.success(consultService.setconsult(consultAdReqVO));
 	}
 
 	@PostMapping("/add")
