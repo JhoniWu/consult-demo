@@ -57,6 +57,7 @@ public class UserController {
 			session.setAttribute("password", loginUser.getPassword());
 			session.setAttribute("userid",loginUser.getId());
 			session.setAttribute("role", loginUser.getRole());
+			session.setAttribute("name", loginUser.getName());
 			return CommonResult.success("登录成功");
 		} else {
 			return CommonResult.bizError("账户或密码错误");

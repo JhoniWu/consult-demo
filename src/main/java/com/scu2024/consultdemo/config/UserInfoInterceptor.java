@@ -1,6 +1,4 @@
 package com.scu2024.consultdemo.config;
-
-import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
 import com.scu2024.consultdemo.common.UserUtils;
 import com.scu2024.consultdemo.dao.po.User;
 import com.scu2024.consultdemo.service.UserService;
@@ -35,6 +33,7 @@ public class UserInfoInterceptor implements HandlerInterceptor {
 		user.setPassword((String) session.getAttribute("password"));
 		user.setId(userId);
 		user.setAccount((String) session.getAttribute("account"));
+		user.setName((String) session.getAttribute("name"));
 		UserUtils.addUser(user);
 		return true;
 	}

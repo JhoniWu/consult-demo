@@ -31,7 +31,6 @@ public class VisitAdvanceController {
 		return CommonResult.success(visitAdvanceService.listAll());
 	}
 
-
 	@PostMapping("/add")
 	public CommonResult addOne(@RequestBody VisitAdvance visitAdvance){
 		return CommonResult.success(visitAdvanceService.add(visitAdvance));

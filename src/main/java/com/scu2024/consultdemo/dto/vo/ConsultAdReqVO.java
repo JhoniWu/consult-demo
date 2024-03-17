@@ -12,8 +12,8 @@ import lombok.Setter;
  **/
 @Data
 public class ConsultAdReqVO {
-	Long id;
 	Long studentId;
+	Long consultorId;
 	Integer consultTime;
 	Integer consultDay;
 	String consultPlace;
